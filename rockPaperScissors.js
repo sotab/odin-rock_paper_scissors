@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
     const getNumber = function () { return Math.floor(Math.random() * 3) }
 
@@ -14,4 +11,10 @@ function getComputerChoice() {
     }
 }
 
-console.log(getComputerChoice())
+function getHumanChoice() {
+    const greetingToGame = `Welcome to the "Rock Paper Scissors" game! Please add your choice below:`
+
+    return window.prompt(greetingToGame)
+}
+
+console.log(getHumanChoice())
