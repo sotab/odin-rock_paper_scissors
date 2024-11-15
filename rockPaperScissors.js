@@ -54,10 +54,6 @@ function playGame() {
             return alert("Invalid input, please try again")
         }
 
-        // if (humanChoice == computerChoice) {
-        //     console.log(`It's a tie!`)
-        // }
-
         const humanWin = isWinnerHuman(humanChoice, computerChoice)
         if (humanWin == true) {
             humanScore++
@@ -70,22 +66,73 @@ function playGame() {
         }
     }
 
-    for (const current of round) {
-        console.log(`This is round ${current + 1}, lets play!`)
-        let humanChoice = getHumanChoice()
-        let computerChoice = getComputerChoice()
-        playRound(humanChoice, computerChoice)
-        console.log('Human score:', humanScore)
-        console.log('Computer score:', computerScore)
+    let humanChoice = getHumanChoice()
+    let computerChoice = getComputerChoice()
+    playRound(humanChoice, computerChoice)
+    console.log('Human score:', humanScore)
+    console.log('Computer score:', computerScore)
 
-        if (current == 4 && humanScore > computerScore) {
-            return console.log('And that is the game! You won the game!')
-        } else if (current == 4 && humanScore > computerScore) {
-            return console.log('And that is the game! The computer won the game!')
-        } else if (current == 4 && humanScore == computerScore) {
-            return console.log('And that is the game! It ends with a tie!')
-        }
+    // TODO: Readd logic once ui is finished
+    // for (const current of round) {
+    //     console.log(`This is round ${current + 1}, lets play!`)
+    //     let humanChoice = getHumanChoice()
+    //     let computerChoice = getComputerChoice()
+    //     playRound(humanChoice, computerChoice)
+    //     console.log('Human score:', humanScore)
+    //     console.log('Computer score:', computerScore)
+
+    //     if (current == 4 && humanScore > computerScore) {
+    //         return console.log('And that is the game! You won the game!')
+    //     } else if (current == 4 && humanScore > computerScore) {
+    //         return console.log('And that is the game! The computer won the game!')
+    //     } else if (current == 4 && humanScore == computerScore) {
+    //         return console.log('And that is the game! It ends with a tie!')
+    //     }
+    // }
+}
+
+const results = document.createElement("div")
+
+function playRound(humanChoice) {
+    const computerChoice = getComputerChoice()
+    humanChoice = capitalize(humanChoice)
+
+    const humanWin = isWinnerHuman(humanChoice, computerChoice)
+    if (humanWin == true) {
+        return results.textContent = 'You win!'
+    } else if (humanWin !== false) {
+        return results.textContent = 'Computer wins!'
+    } else {
+        return results.textContent ='It is a tie!'
     }
 }
 
-console.log(playGame())
+
+const container = document.querySelector("#container")
+const btnRock = document.createElement("button")
+const btnPaper = document.createElement("button")
+const btnScissors = document.createElement("button")
+
+
+btnRock.textContent = "Rock"
+btnPaper.textContent = "Paper"
+btnScissors.textContent = "Scissors"
+
+btnRock.addEventListener("click", () => {
+    playRound("Rock")
+})
+
+btnPaper.addEventListener("click", () => {
+    playRound("Paper")
+})
+
+btnScissors.addEventListener("click", () => {
+    playRound("Scissors")
+})
+
+container.appendChild(btnRock)
+container.appendChild(btnPaper)
+container.appendChild(btnScissors)
+container.appendChild(results)
+
+// console.log(playGame())
