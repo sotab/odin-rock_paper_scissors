@@ -1,3 +1,6 @@
+let scoreHuman = 0;
+let scoreComputer = 0;
+
 function getComputerChoice() {
     const getNumber = function () { return Math.floor(Math.random() * 3) }
 
@@ -92,6 +95,15 @@ function playGame() {
 }
 
 const results = document.createElement("div")
+results.setAttribute("style", "display: flex;")
+
+const humanResult = document.createElement("div")
+const computerResult = document.createElement("div")
+
+humanResult.textContent = "You: 0"
+computerResult.textContent = "Computer: 0"
+results.textContent = "Click a button to play game"
+
 
 function playRound(humanChoice) {
     const computerChoice = getComputerChoice()
@@ -99,14 +111,18 @@ function playRound(humanChoice) {
 
     const humanWin = isWinnerHuman(humanChoice, computerChoice)
     if (humanWin == true) {
-        return results.textContent = 'You win!'
+        scoreHuman++
+        console.log('You win')
+        results.textContent ='You win!'
+        humanResult.textContent = `You: ${scoreHuman}`
     } else if (humanWin !== false) {
-        return results.textContent = 'Computer wins!'
+        scoreComputer++
+        results.textContent ='Computer wins!'
+        computerResult.textContent = `Computer: ${scoreComputer}`
     } else {
-        return results.textContent ='It is a tie!'
+        results.textContent ='It is a tie!'
     }
 }
-
 
 const container = document.querySelector("#container")
 const btnRock = document.createElement("button")
@@ -134,5 +150,6 @@ container.appendChild(btnRock)
 container.appendChild(btnPaper)
 container.appendChild(btnScissors)
 container.appendChild(results)
+container.appendChild(humanResult)
+container.appendChild(computerResult)
 
-// console.log(playGame())
