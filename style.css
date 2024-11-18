@@ -1,0 +1,28 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.btn-container {
+    width: 250px;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.announcement {
+    display: flex;
+}
+
+.results-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
