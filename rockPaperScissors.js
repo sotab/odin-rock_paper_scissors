@@ -1,9 +1,11 @@
 // UI elements
-const container = document.querySelector("#container")
+const container = document.querySelector("body")
 
-const results = document.createElement("div")
+const resultsContainer = document.createElement("div")
+const announcement = document.createElement("div")
 const humanResult = document.createElement("div")
 const computerResult = document.createElement("div")
+const btnContainer = document.createElement("div")
 const btnRock = document.createElement("button")
 const btnPaper = document.createElement("button")
 const btnScissors = document.createElement("button")
@@ -14,15 +16,24 @@ btnPaper.textContent = "Paper"
 btnScissors.textContent = "Scissors"
 humanResult.textContent = "You: 0"
 computerResult.textContent = "Computer: 0"
-results.textContent = "Click a button to play game"
+announcement.textContent = "Click a button to play game"
+resultsContainer.className = "results-container"
+btnContainer.className = "btn-container"
+announcement.className = "announcement"
 
 
-container.appendChild(btnRock)
-container.appendChild(btnPaper)
-container.appendChild(btnScissors)
-container.appendChild(results)
-container.appendChild(humanResult)
-container.appendChild(computerResult)
+// resultsContainer.appendChild(results)
+resultsContainer.appendChild(humanResult)
+resultsContainer.appendChild(computerResult)
+
+
+btnContainer.appendChild(btnRock)
+btnContainer.appendChild(btnPaper)
+btnContainer.appendChild(btnScissors)
+
+container.appendChild(announcement)
+container.appendChild(btnContainer)
+container.appendChild(resultsContainer)
 
 // Logic
 let scoreHuman = 0;
@@ -67,14 +78,14 @@ function playRound(humanChoice) {
     const humanWin = isWinnerHuman(humanChoice, computerChoice)
     if (humanWin == true) {
         scoreHuman++
-        results.textContent ='You win this round!'
+        announcement.textContent ='You win this round!'
         humanResult.textContent = `You: ${scoreHuman}`
     } else if (humanWin !== false) {
         scoreComputer++
-        results.textContent ='Computer wins this round!'
+        announcement.textContent ='Computer wins this round!'
         computerResult.textContent = `Computer: ${scoreComputer}`
     } else {
-        results.textContent ='It is a tie!'
+        announcement.textContent ='It is a tie!'
     }
 }
 
@@ -84,9 +95,9 @@ function announceWinner(scoreHuman, scoreComputer) {
         btnPaper.disabled = true
         btnScissors.disabled = true
         if (scoreHuman == 5) {
-            results.textContent = 'You win the game! Refresh page to play again.'
+            announcement.textContent = 'You win the game! Refresh page to play again.'
         } else if ( scoreComputer == 5) {
-             results.textContent = 'Computer wins the game! Refresh page to play again.'
+            announcement.textContent = 'Computer wins the game! Refresh page to play again.'
         }
     }
 }
